@@ -1,0 +1,28 @@
+
+.App {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background: #fafafa;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif;
+}
+
+.ant-btn:hover {
+  color: black !important;
+  border-color: black !important;
+}
+
+.ant-btn:active {
+  color: black !important;
+  border-color: black !important;
+}
+
+.ant-btn:focus {
+  color: black !important;
+  border-color: black !important;
+}
+

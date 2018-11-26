@@ -1,0 +1,46 @@
+.login-card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .card {
+    .card-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .email-input {
+      width: 100%;
+      margin: 10px 0;
+    }
+
+    .email-input:focus {
+      outline: none !important;
+      border: 1px #5e2ca5;
+      box-shadow: 0 0 5px #5e2ca5;
+    }
+
+    .email-input:hover {
+      outline: none !important;
+      border: 1px #5e2ca5;
+      box-shadow: 0 0 5px #5e2ca5;
+    }
+
+    .submit-button {
+      margin: 10px 0;
+      background: #f4f4f4;
+      border: 1px #ccc;
+      color: black;
+    }
+    .submit-button:hover {
+      background: #5e2ca5;
+      border: 1px #5e2ca5;
+      color: white;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "extends": "",
+  "rules": {
+    "func-names": [
+      "error",
+      "never"
+    ],
+    "indent": ["error", 4],
+    "react/jsx-indent": [true, 4],
+    "react/jsx-indent-props": [true, 4],
+    "react/jsx-boolean-value": false,
+    "react/jsx-filename-extension": false,
+    "react/jsx-tag-spacing": false,
+    "import/no-name-as-default": false
+
+  }
+}
