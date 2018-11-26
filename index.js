@@ -57,7 +57,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
 
-http.createServer(app).listen(port, () => {
+app.listen(port, () => {
     console.log(`Server is up on port ${port}`);
 });
 
