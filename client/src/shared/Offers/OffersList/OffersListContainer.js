@@ -103,8 +103,7 @@ class OffersListContainer extends React.Component{
         const {offers, visible} = this.state;
         const showAddOffer = role === 'OWNER';
         return(
-            offers.length === 0 ?
-                <Spin/> :
+
                 <OffersListView
                     visible={visible}
                     data={offers}

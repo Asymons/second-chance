@@ -1,6 +1,6 @@
 import React from 'react';
 import OffersListItem from './OffersListItem/OffersListItem';
-import { Button, Form, Input, List, Modal } from 'antd';
+import { Button, Form, Input, List, Modal, Spin } from 'antd';
 import { connect } from 'react-redux';
 
 const FormItem = Form.Item;
@@ -71,6 +71,8 @@ class OffersListView extends React.Component {
                 <div style={styles.distance}>
                     Offers in a {settings.radius} km radius.
                 </div>
+                data.length === 0 ?
+                <Spin/> :
                 <List
                     dataSource={data}
                     renderItem={item =>
