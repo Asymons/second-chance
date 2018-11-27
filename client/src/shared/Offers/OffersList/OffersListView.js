@@ -9,7 +9,7 @@ const OfferAddModal = Form.create()(
     class OfferAddModal extends React.Component {
         render() {
             const { visible, handleOk, handleCancel, form } = this.props;
-            const {getFieldDecorator} = form;
+            const { getFieldDecorator } = form;
             return (
                 <Modal
                     title="Add Offer"
@@ -71,13 +71,17 @@ class OffersListView extends React.Component {
                 <div style={styles.distance}>
                     Offers in a {settings.radius} km radius.
                 </div>
-                data.length === 0 ?
-                <Spin/> :
-                <List
-                    dataSource={data}
-                    renderItem={item =>
-                        <OffersListItem {...item} onPressListItem={onPressListItem} onDeleteItem={onDeleteItem}/>}
-                />
+                {
+                    data.length === 0 ?
+                        <Spin/> :
+                        <List
+                            dataSource={data}
+                            renderItem={item =>
+                                <OffersListItem {...item}
+                                                onPressListItem={onPressListItem}
+                                                onDeleteItem={onDeleteItem}/>}
+                        />
+                }
             </div>
         );
     }
