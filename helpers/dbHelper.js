@@ -32,6 +32,13 @@ const addUser = (userInfo) => {
                 totalPurchases: 0,
                 totalSpent: 0,
                 totalSaved: 0,
+                history: [],
+                settings: {
+                    radius: 5,
+                    lat: 0,
+                    lng: 0,
+                },
+                role: 'USER',
             });
             newUser.save((err) => {
                 if(err) console.log(err);
