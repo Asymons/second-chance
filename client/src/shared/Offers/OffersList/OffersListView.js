@@ -52,6 +52,7 @@ class OffersListView extends React.Component {
             handleCancel,
             saveFormRef,
             onDeleteItem,
+            showAddOffer,
         } = this.props;
         return (
             <div className="offers-list-view" style={{ margin: 10 }}>
@@ -61,9 +62,12 @@ class OffersListView extends React.Component {
                     handleOk={handleOk}
                     handleCancel={handleCancel}
                 />
-                <div className="edit-offers">
-                    <Button onClick={showModal}>Add Offer</Button>
-                </div>
+                {
+                    showAddOffer ?
+                        <div className="edit-offers">
+                            <Button onClick={showModal}>Add Offer</Button>
+                        </div> : null
+                }
                 <div style={styles.distance}>
                     Offers in a {settings.radius} km radius.
                 </div>

@@ -3,6 +3,7 @@ import NoDataFound from '../../NoDataFound';
 import OffersListView from './OffersListView';
 import { connect } from 'react-redux';
 import { addOffer, deleteOffer, getOffers, getOrders, getUser } from '../../requests';
+import { Spin } from 'antd';
 
 class OffersListContainer extends React.Component{
 
@@ -98,15 +99,18 @@ class OffersListContainer extends React.Component{
     }
 
     render(){
+        const {role} = this.props;
         const {offers, visible} = this.state;
+        const showAddOffer = role === 'OWNER';
         return(
             offers.length === 0 ?
-                <NoDataFound/> :
+                <Spin/> :
                 <OffersListView
                     visible={visible}
                     data={offers}
                     onPressListItem={this.onPressListItem}
                     showModal={this.showModal}
+                    showAddOffer={showAddOffer}
                     handleOk={this.handleOk}
                     handleCancel={this.handleCancel}
                     saveFormRef={this.saveFormRef}
@@ -119,6 +123,7 @@ class OffersListContainer extends React.Component{
 const mapStateToProps = (state) => ({
     token: state.sessionState.token,
     settings: state.sessionState.settings,
+    role: state.sessionState.role,
 });
 
 const mapDispatchToProps = (dispatch) => ({

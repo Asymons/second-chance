@@ -2,6 +2,7 @@ import React from 'react';
 import OrderHistoryView from './OrderHistoryView/OrderHistoryView';
 import { connect } from 'react-redux';
 import { getOrderHistory } from '../../../shared/requests';
+import { Spin } from 'antd';
 
 class OrderHistoryContainer extends React.Component {
 
@@ -33,6 +34,7 @@ class OrderHistoryContainer extends React.Component {
         const {history} = this.state;
         console.log(history);
         return(
+            history.length === 0 ? <Spin/> :
             <OrderHistoryView data={history}/>
         )
     }

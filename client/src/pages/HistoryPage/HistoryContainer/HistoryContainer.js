@@ -1,8 +1,8 @@
 import React from 'react';
 import HistoryView from './HistoryView/HistoryView';
 import { getHistory } from '../../../shared/requests';
-import NoDataFound from '../../../shared/NoDataFound';
 import { connect } from 'react-redux';
+import { Spin } from 'antd';
 
 class HistoryContainer extends React.Component {
 
@@ -33,7 +33,7 @@ class HistoryContainer extends React.Component {
     render(){
         const {history} = this.state;
         return (
-            history.length === 0 ? <NoDataFound/> : <HistoryView data={history}/>
+            history.length === 0 ? <Spin/> : <HistoryView data={history}/>
         )
     }
 }

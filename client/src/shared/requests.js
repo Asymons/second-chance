@@ -159,3 +159,18 @@ export const getOrders = (accessToken) => {
             return Promise.reject('Error in posting offer', error);
         });
 };
+
+export const getRole = (accessToken) => {
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${accessToken}`,
+    };
+    return axios
+        .get(`${serverUrl}/role`, { headers })
+        .then(({ data }) => {
+            return data;
+        })
+        .catch(error => {
+            return Promise.reject('Error in posting offer', error);
+        });
+};

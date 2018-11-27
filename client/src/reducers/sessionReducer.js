@@ -13,7 +13,8 @@ const INITIAL_STATE = {
         radius: 5,
         lat: 0,
         lng: 0
-    }
+    },
+    role: 'USER',
 };
 
 const setToken = (state, action) => ({
@@ -29,7 +30,12 @@ const setCheckoutInfo = (state, action) => ({
 const setSettings = (state, action) => ({
     ...state,
     settings: action.settings,
-})
+});
+
+const setRole = (state, action) => ({
+    ...state,
+    role: action.role,
+});
 
 function sessionReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
@@ -43,6 +49,9 @@ function sessionReducer(state = INITIAL_STATE, action) {
         case 'SET_SETTINGS': {
             saveSettings(state.token, action.settings);
             return setSettings(state, action);
+        }
+        case 'SET_ROLE': {
+            return setRole(state, action);
         }
         default:
             return state;

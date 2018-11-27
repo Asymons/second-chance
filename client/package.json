@@ -25,7 +25,7 @@
     "validator": "^10.9.0"
   },
   "scripts": {
-    "start": "react-app-rewired start HTTPS=true",
+    "start": "react-app-rewired start HTTPS=true PORT=3001",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"

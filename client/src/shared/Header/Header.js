@@ -7,13 +7,26 @@ import { Button } from 'antd';
 const logo = require('../../assets/images/templogo.png');
 
 const messages = {
-    home: "Home",
-    history: "History",
-    login: "Login",
-    settings: "Settings",
-    orderHistory: "Order History",
-    signOut: "Sign out"
+    home: 'Home',
+    history: 'History',
+    login: 'Login',
+    settings: 'Settings',
+    orderHistory: 'Order History',
+    signOut: 'Sign out'
 };
+
+const userRoutes = [
+    '/home',
+    '/history',
+    '/settings',
+    '/',
+    '/login',
+];
+
+const ownerRoutes = [
+    ...userRoutes,
+    '/orderHistory',
+];
 
 const unauthTabs = [
     {
@@ -61,34 +74,50 @@ class Header extends React.Component {
         };
     }
 
-    generateTabsButtons(tabs) {
-        const {onSetToken} = this.props;
+    generateTabsButtons(tabs, role) {
+        const { onSetToken } = this.props;
         return (
-            tabs.map((tabProp, index) =>
-                <Button
-                    ghost
-                    onClick={() => {
-                        if (tabProp.title === messages.signOut) {
-                            onSetToken(null);
-                        }
-                        this.setState({
-                            navigate: true,
-                            to: tabProp.url,
-                        });
+            tabs.map((tabProp, index) => {
+                    let validRoutes = [];
+                    if (role === 'OWNER') {
+                        validRoutes = ownerRoutes;
+                    } else {
+                        validRoutes = userRoutes;
                     }
+
+                    if (validRoutes.find((validRoute) => validRoute === tabProp.url) !== undefined) {
+                        return (
+                            <Button
+                                ghost
+                                onClick={() => {
+                                    if (tabProp.title === messages.signOut) {
+                                        onSetToken(null);
+                                    }
+                                    this.setState({
+                                        navigate: true,
+                                        to: tabProp.url,
+                                    });
+                                }
+                                }
+                                className="tab-item"
+                                key={index}
+                            >
+                                {tabProp.title}
+                            </Button>
+                        );
+                    } else {
+                        return null;
                     }
-                    className="tab-item"
-                    key={index}
-                >
-                    {tabProp.title}
-                </Button>)
+                }
+            )
         );
     }
 
     render() {
 
-        const {navigate, to} = this.state;
-        const {token, history} = this.props;
+        const { navigate, to } = this.state;
+        const { token, role, history } = this.props;
+        console.log('role', role);
 
         if (navigate) {
             this.setState({
@@ -99,7 +128,7 @@ class Header extends React.Component {
 
         return (
             <Sticky>
-                {({style}) =>
+                {({ style }) =>
                     <div className="sticky-content" style={style}>
                         <div className="header-branding">
                             <img src={logo} className="logo"/>
@@ -108,7 +137,7 @@ class Header extends React.Component {
                         <div className="tabs">
                             {
                                 token ?
-                                    this.generateTabsButtons(authTabs)
+                                    this.generateTabsButtons(authTabs, role)
                                     :
                                     this.generateTabsButtons(unauthTabs)
                             }
@@ -123,10 +152,11 @@ class Header extends React.Component {
 
 const mapStateToProps = (state) => ({
     token: state.sessionState.token,
+    role: state.sessionState.role
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    onSetToken: (token) => dispatch({type: 'SET_TOKEN', token}),
+    onSetToken: (token) => dispatch({ type: 'SET_TOKEN', token }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

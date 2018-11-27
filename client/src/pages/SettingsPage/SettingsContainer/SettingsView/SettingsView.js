@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Card, Input, List } from 'antd';
+import './SettingsView.scss';
 
 const SettingsView = (props) => {
 
@@ -13,7 +14,7 @@ const SettingsView = (props) => {
     console.log('Current Settings', props.settings)
 
     const listOfSettings = [
-        <div>
+        <div className="setting-tab">
             <Input
                 defaultValue={unsavedRadius}
                 addonAfter={<div className="saved-distance">{radius} km</div>}
@@ -21,7 +22,7 @@ const SettingsView = (props) => {
                 onChange={(e) => onChangeSettings({...props.unsavedSettings, radius: Number(e.target.value)})}
             />
         </div>,
-        <div>
+        <div className="setting-tab">
             <Input
                 defaultValue={unsavedLat}
                 addonAfter={<div className="saved-lat">{lat}</div>}
@@ -29,7 +30,7 @@ const SettingsView = (props) => {
                 onChange={(e) => onChangeSettings({...props.unsavedSettings, lat: Number(e.target.value)})}
             />
         </div>,
-        <div>
+        <div className="setting-tab">
             <Input
                 defaultValue={unsavedLng}
                 addonAfter={<div className="saved-distance">{lng}</div>}
