@@ -174,3 +174,22 @@ export const getRole = (accessToken) => {
             return Promise.reject('Error in posting offer', error);
         });
 };
+
+export const getUploadProps = (accessToken, message) =>
+    ({
+    name: 'file',
+    action: `${serverUrl}/images`,
+    headers: {
+        'Authorization': `Bearer ${accessToken}`,
+    },
+    onChange(info) {
+        if (info.file.status !== 'uploading') {
+            console.log(info.file, info.fileList);
+        }
+        if (info.file.status === 'done') {
+            console.log(`${info.file.name} file uploaded successfully`);
+        } else if (info.file.status === 'error') {
+            console.log(`${info.file.name} file upload failed.`);
+        }
+    },
+});

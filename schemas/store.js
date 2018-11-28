@@ -27,6 +27,7 @@ const storeSchema = new Schema({
     totalEarned: Number,
     totalSales: Number,
     totalLikes: Number,
+    imageUrl: String,
 });
 
 module.exports = mongoose.model('store', storeSchema);

@@ -1,6 +1,7 @@
 const User = require('../schemas/user');
 const Store = require('../schemas/store');
 const calcHelper = require('./calcHelper');
+const cloudinary = require('cloudinary');
 
 const getUser = async (googleId) => {
     const user = await User.findOne({googleId});
@@ -141,7 +142,15 @@ const getAllStores = async () => {
 };
 
 const saveStore = async (storeInfo) => {
-    (new Store(storeInfo)).save();
+    (new Store({...storeInfo, public_id: '', imageUrl: 'https://res.cloudinary.com/second-chance/image/upload/v1543371314/demo/no-image-500.png'})).save();
+};
+
+const setStoreImage = async (storeId, imageUrl, publicId) => {
+    const store = await getStore(storeId);
+    cloudinary.v2.uploader.destroy(store.publicId);
+    store.imageUrl = imageUrl;
+    store.publicId = publicId;
+    store.save();
 };
 
 module.exports = {
@@ -164,4 +173,5 @@ module.exports = {
     getOffer,
     getAllStores,
     saveStore,
+    setStoreImage,
 };

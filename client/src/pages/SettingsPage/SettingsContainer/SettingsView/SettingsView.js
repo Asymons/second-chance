@@ -1,15 +1,15 @@
 import React from 'react';
-import { Button, Card, Input, List } from 'antd';
+import { Button, Card, Icon, Input, List, Upload } from 'antd';
 import './SettingsView.scss';
 
 const SettingsView = (props) => {
 
-    const {radius, lat, lng} = props.settings;
+    const { radius, lat, lng } = props.settings;
     const unsavedRadius = props.unsavedSettings.radius;
     const unsavedLat = props.unsavedSettings.lat;
     const unsavedLng = props.unsavedSettings.lng;
 
-    const {onChangeSettings, onSaveSettings} = props;
+    const { onChangeSettings, onSaveSettings, uploadProps } = props;
 
     console.log('Current Settings', props.settings)
 
@@ -19,7 +19,7 @@ const SettingsView = (props) => {
                 defaultValue={unsavedRadius}
                 addonAfter={<div className="saved-distance">{radius} km</div>}
                 placeholder="Enter search radius in km"
-                onChange={(e) => onChangeSettings({...props.unsavedSettings, radius: Number(e.target.value)})}
+                onChange={(e) => onChangeSettings({ ...props.unsavedSettings, radius: Number(e.target.value) })}
             />
         </div>,
         <div className="setting-tab">
@@ -27,7 +27,7 @@ const SettingsView = (props) => {
                 defaultValue={unsavedLat}
                 addonAfter={<div className="saved-lat">{lat}</div>}
                 placeholder="Enter lat or allow location"
-                onChange={(e) => onChangeSettings({...props.unsavedSettings, lat: Number(e.target.value)})}
+                onChange={(e) => onChangeSettings({ ...props.unsavedSettings, lat: Number(e.target.value) })}
             />
         </div>,
         <div className="setting-tab">
@@ -35,8 +35,15 @@ const SettingsView = (props) => {
                 defaultValue={unsavedLng}
                 addonAfter={<div className="saved-distance">{lng}</div>}
                 placeholder="Enter lng or allow location"
-                onChange={(e) => onChangeSettings({...props.unsavedSettings, lng: Number(e.target.value)})}
+                onChange={(e) => onChangeSettings({ ...props.unsavedSettings, lng: Number(e.target.value) })}
             />
+        </div>,
+        <div className="setting-tab">
+            <Upload {...uploadProps}>
+                <Button enctype="multipart/form-data">
+                    <Icon type="upload"/> Click to Upload
+                </Button>
+            </Upload>
         </div>
     ];
 
@@ -50,7 +57,7 @@ const SettingsView = (props) => {
                     dataSource={listOfSettings}
                     renderItem={(item) => item}
                 />
-                <Button style={{margin: 10}} onClick={() => onSaveSettings(props.unsavedSettings)}>Save</Button>
+                <Button style={{ margin: 10 }} onClick={() => onSaveSettings(props.unsavedSettings)}>Save</Button>
             </Card>
         </div>
     );

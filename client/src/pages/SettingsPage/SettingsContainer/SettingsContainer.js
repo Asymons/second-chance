@@ -2,6 +2,8 @@ import React from 'react';
 import SettingsView from './SettingsView/SettingsView';
 import { connect } from 'react-redux';
 import validator from 'validator';
+import { getUploadProps } from '../../../shared/requests';
+import {message} from 'antd';
 
 class SettingsContainer extends React.Component {
 
@@ -41,7 +43,9 @@ class SettingsContainer extends React.Component {
 
     render() {
         const unsavedSettings = this.state.settings;
-        const { settings } = this.props;
+        const { token, settings } = this.props;
+
+        const uploadProps = getUploadProps(token, message);
 
         return (
             <SettingsView
@@ -49,12 +53,14 @@ class SettingsContainer extends React.Component {
                 settings={settings}
                 onChangeSettings={this.onChangeSettings}
                 onSaveSettings={this.onSaveSettings}
+                uploadProps={uploadProps}
             />
         )
     }
 }
 
 const mapStateToProps = (state) => ({
+    token: state.sessionState.token,
     settings: state.sessionState.settings,
 });
 const mapDispatchToProps = (dispatch) => ({

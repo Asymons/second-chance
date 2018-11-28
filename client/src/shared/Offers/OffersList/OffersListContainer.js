@@ -36,6 +36,7 @@ class OffersListContainer extends React.Component{
                         ...offer,
                         storeId: store._id,
                         offerId: offer._id,
+                        imageUrl: store.imageUrl,
                     })
                 });
             }

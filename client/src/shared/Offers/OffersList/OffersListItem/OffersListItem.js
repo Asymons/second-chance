@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, List } from 'antd';
-import mrMeatImage from '../../../../assets/images/mrmeat-logo.jpg';
 import './OffersListItem.scss';
 
 const centeredRow = {
@@ -14,7 +13,7 @@ const centeredRow = {
 class OffersListItem extends React.Component {
 
     render() {
-        const { storeId, itemPrice, itemDiscount, itemName, company, address, offerId, onPressListItem, onDeleteItem } = this.props;
+        const { storeId, itemPrice, itemDiscount, itemName, company, address, offerId, onPressListItem, onDeleteItem, imageUrl } = this.props;
         console.log(this.props);
         const itemInfo = {
             itemFullPrice: itemPrice,
@@ -28,7 +27,7 @@ class OffersListItem extends React.Component {
             <Card>
                 <List.Item onClick={() => onPressListItem(itemInfo)} actions={[<a onClick={() => onDeleteItem(itemInfo)}>Delete</a>]}>
                     <List.Item.Meta
-                        avatar={<img width={100} src={mrMeatImage}/>}
+                        avatar={<img width={100} src={imageUrl}/>}
                         title={itemInfo.itemName}
                         description={<div style={centeredRow}>
                             <div>{itemName}</div>

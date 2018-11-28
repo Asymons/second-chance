@@ -4,10 +4,7 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const cors = require('cors');
-const http = require('http');
-const jwt = require('express-jwt');
 const cookieSession = require('cookie-session');
-const expressValidator = require('express-validator');
 const path = require('path');
 
 require('dotenv').config();
