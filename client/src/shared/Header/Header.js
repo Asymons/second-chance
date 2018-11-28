@@ -113,6 +113,13 @@ class Header extends React.Component {
         );
     }
 
+    navigateToHome = () => {
+        this.setState({
+            navigate: true,
+            to: '/',
+        })
+    }
+
     render() {
 
         const { navigate, to } = this.state;
@@ -130,7 +137,7 @@ class Header extends React.Component {
             <Sticky>
                 {({ style }) =>
                     <div className="sticky-content" style={style}>
-                        <div className="header-branding">
+                        <div className="header-branding" style={{cursor: 'pointer'}} onClick={this.navigateToHome}>
                             <img src={logo} className="logo"/>
                             <span className="app-name">Second Chance</span>
                         </div>

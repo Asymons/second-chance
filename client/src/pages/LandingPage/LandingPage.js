@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './LandingPage.scss';
+import ContactFormContainer from '../../shared/ContactForm/ContactFormContainer';
 
 const landingBanner = require('../../assets/images/landing-banner.webp');
 const produceImage = require('../../assets/images/produce.webp');
@@ -40,6 +41,7 @@ const LandingPage = (props) => (
                 </div>
             </div>
         </div>
+        <ContactFormContainer/>
         <div className="footer">
             Copyright © 2018 Alessio Symons
         </div>

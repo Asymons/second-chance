@@ -1,5 +1,6 @@
 const User = require('../schemas/user');
 const Store = require('../schemas/store');
+const Email = require('../schemas/email');
 const calcHelper = require('./calcHelper');
 const cloudinary = require('cloudinary');
 
@@ -153,6 +154,24 @@ const setStoreImage = async (storeId, imageUrl, publicId) => {
     store.save();
 };
 
+const getAllEmail = async () => {
+    return await Email.find({});
+};
+
+const doesEmailAddressExist = async (email) => {
+    return (await Email.find({email})).length > 0;
+};
+
+const saveEmail = async (email) => {
+    const emails = await getAllEmail();
+    if(emails.length <= 1000 && !(await doesEmailAddressExist(email))){
+        (new Email({email})).save();
+        return {message: 'Saved email'};
+    }else{
+        return {message: 'Could not save email, too many saved or email exists'};
+    }
+};
+
 module.exports = {
     addUser,
     getUser,
@@ -174,4 +193,5 @@ module.exports = {
     getAllStores,
     saveStore,
     setStoreImage,
+    saveEmail
 };

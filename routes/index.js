@@ -5,6 +5,7 @@ const historyRoutes = require('./historyRoutes');
 const settingsRoutes = require('./settingsRoutes');
 const orderRoutes = require('./orderRoutes');
 const imageRoutes = require('./imageRoutes');
+const emailRoutes = require('./emailRoutes');
 
 module.exports = (app, db) => {
     authRoutes(app);
@@ -14,4 +15,5 @@ module.exports = (app, db) => {
     settingsRoutes(app);
     orderRoutes(app);
     imageRoutes(app);
+    emailRoutes(app);
 };

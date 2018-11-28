@@ -1,0 +1,44 @@
+.contact-form-view {
+  background-position: 50% 50%;
+  min-height: calc(40vh - 60px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .contact-title{
+    font-family: montserrat,sans-serif;
+    font-size: 36px;
+  }
+
+  .contact-message{
+    font-family: roboto, helvetica, sans-serif;
+    font-size: 18px;
+  }
+  .contact-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    .contact-form {
+      margin: 10px;
+      .email-item {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+      }
+    }
+
+    .email-submit {
+      margin: 10px;
+    }
+  }
+
+
+
+}

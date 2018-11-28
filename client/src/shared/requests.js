@@ -193,3 +193,20 @@ export const getUploadProps = (accessToken, message) =>
         }
     },
 });
+
+export const sendEmailAddress = (email) => {
+    const body = {
+        email,
+    };
+    const headers = {
+        'Content-Type': 'application/json',
+    };
+    return axios
+        .post(`${serverUrl}/emailcapture`, body, { headers })
+        .then(({ data }) => {
+            return data;
+        })
+        .catch(error => {
+            return Promise.reject('Error in posting offer', error);
+        });
+};
