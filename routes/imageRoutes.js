@@ -26,12 +26,16 @@ module.exports = (app) => {
         async (req, res) => {
             const userId = req.decoded;
             const user = await dbHelper.getUser(userId);
-            console.log(req.file); // to see what is returned to you
-            const image = {};
-            image.url = req.file.url;
-            image.id = req.file.public_id;
-            await dbHelper.setStoreImage(user.stores[0]._id, image.url, image.id);
-            res.send({message: 'Image saved'});
+            if(user.role === 'OWNER'){
+                console.log(req.file); // to see what is returned to you
+                const image = {};
+                image.url = req.file.url;
+                image.id = req.file.public_id;
+                await dbHelper.setStoreImage(user.stores[0]._id, image.url, image.id);
+                res.send({message: 'Image saved'});
+            }else{
+                res.send({message: 'No permission'});
+            }
         }
     );
 

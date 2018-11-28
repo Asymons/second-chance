@@ -40,7 +40,7 @@ const SettingsView = (props) => {
         </div>,
     ];
 
-    const listOfOwnerSettings = role === 'OWNER' ? [
+    const listOfOwnerSettings = props.role === 'OWNER' ? [
         <div className="setting-tab">
             <Upload {...uploadProps}>
                 <Button enctype="multipart/form-data">
