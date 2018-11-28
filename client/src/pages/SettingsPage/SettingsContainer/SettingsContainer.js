@@ -43,7 +43,7 @@ class SettingsContainer extends React.Component {
 
     render() {
         const unsavedSettings = this.state.settings;
-        const { token, settings } = this.props;
+        const { token, settings, role } = this.props;
 
         const uploadProps = getUploadProps(token, message);
 
@@ -54,6 +54,7 @@ class SettingsContainer extends React.Component {
                 onChangeSettings={this.onChangeSettings}
                 onSaveSettings={this.onSaveSettings}
                 uploadProps={uploadProps}
+                role={role}
             />
         )
     }
@@ -62,6 +63,7 @@ class SettingsContainer extends React.Component {
 const mapStateToProps = (state) => ({
     token: state.sessionState.token,
     settings: state.sessionState.settings,
+    role: state.sessionState.role
 });
 const mapDispatchToProps = (dispatch) => ({
     onSetSettings: (settings) => dispatch({ type: 'SET_SETTINGS', settings }),

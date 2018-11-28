@@ -38,14 +38,19 @@ const SettingsView = (props) => {
                 onChange={(e) => onChangeSettings({ ...props.unsavedSettings, lng: Number(e.target.value) })}
             />
         </div>,
+    ];
+
+    const listOfOwnerSettings = role === 'OWNER' ? [
         <div className="setting-tab">
             <Upload {...uploadProps}>
                 <Button enctype="multipart/form-data">
-                    <Icon type="upload"/> Click to Upload
+                    <Icon type="upload"/> Set Company Image
                 </Button>
             </Upload>
         </div>
-    ];
+    ] : [];
+
+    const displayListOfSettings = [...listOfSettings, ...listOfOwnerSettings];
 
     return (
         <div className="settings-view">
@@ -54,7 +59,7 @@ const SettingsView = (props) => {
                     Settings
                 </h2>
                 <List
-                    dataSource={listOfSettings}
+                    dataSource={displayListOfSettings}
                     renderItem={(item) => item}
                 />
                 <Button style={{ margin: 10 }} onClick={() => onSaveSettings(props.unsavedSettings)}>Save</Button>

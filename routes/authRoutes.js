@@ -4,9 +4,10 @@ const jwt = require('jsonwebtoken');
 module.exports = (app) => {
 
     app.get('/api/token', async (req, res) => {
-        const {id} = req.query;
+        const {id, profileObj} = req.query;
+        const profileJson = JSON.parse(profileObj);
         const token = jwt.sign({ id }, process.env.JWT_SECRET);
-        await dbHelper.addUser({googleId: id});
+        await dbHelper.addUser({googleId: id, ...profileJson});
         res.send({token});
     });
 

@@ -2,8 +2,8 @@ import axios from 'axios';
 
 export const serverUrl = process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:3001/api';
 
-export const getToken = async (userId) => {
-    const tokenObj = await axios.get(`${serverUrl}/token/?id=${userId}`);
+export const getToken = async (userId, profileObj) => {
+    const tokenObj = await axios.get(`${serverUrl}/token/?id=${userId}&profileObj=${JSON.stringify(profileObj)}`);
     const {token} = tokenObj.data;
     return token;
 };
