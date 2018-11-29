@@ -11,7 +11,8 @@ class SettingsContainer extends React.Component {
         super(props);
 
         this.state = {
-            settings: props.settings
+            settings: props.settings,
+            message: '',
         };
     }
 
@@ -23,7 +24,9 @@ class SettingsContainer extends React.Component {
                 lat: location.coords.latitude,
                 lng: location.coords.longitude
             });
-            console.log(location);
+            this.setState({
+                message: '',
+            });
         });
     }
 
@@ -38,11 +41,15 @@ class SettingsContainer extends React.Component {
         const { radius, lat, lng } = settings;
         if (validator.isInt(radius + '') && validator.isNumeric(lat + '') && validator.isNumeric(lng + '')) {
             onSetSettings(settings);
+            this.setState({
+                message: 'Settings have been saved',
+            });
         }
     }
 
     render() {
         const unsavedSettings = this.state.settings;
+        const {message} = this.state;
         const { token, settings, role } = this.props;
 
         const uploadProps = getUploadProps(token, message);
@@ -55,6 +62,7 @@ class SettingsContainer extends React.Component {
                 onSaveSettings={this.onSaveSettings}
                 uploadProps={uploadProps}
                 role={role}
+                message={message}
             />
         )
     }

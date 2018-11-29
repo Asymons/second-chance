@@ -13,7 +13,6 @@ class LoginCardContainer extends React.Component {
 
     onLoginSuccess = async (info) => {
         const {googleId} = info.profileObj;
-        console.log(info.profileObj);
         const {onSetToken, onSetSettings, onSetRole} = this.props;
         const token = await getToken(googleId, info.profileObj);
         onSetToken(token);

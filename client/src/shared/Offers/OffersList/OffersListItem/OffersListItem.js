@@ -13,8 +13,19 @@ const centeredRow = {
 class OffersListItem extends React.Component {
 
     render() {
-        const { storeId, itemPrice, itemDiscount, itemName, company, address, offerId, onPressListItem, onDeleteItem, imageUrl } = this.props;
-        console.log(this.props);
+        const {
+            storeId,
+            itemPrice,
+            itemDiscount,
+            itemName,
+            company,
+            address,
+            offerId,
+            onPressListItem,
+            onDeleteItem,
+            imageUrl,
+            isOwner,
+        } = this.props;
         const itemInfo = {
             itemFullPrice: itemPrice,
             itemPrice: itemPrice - itemDiscount,
@@ -23,16 +34,21 @@ class OffersListItem extends React.Component {
             storeId: storeId,
             quantity: 1,
         };
+
+        const listItemProps = isOwner ? {
+            actions: [<a onClick={() => onDeleteItem(itemInfo)}>Delete</a>],
+        } : {};
+
         return (
-            <Card>
-                <List.Item onClick={() => onPressListItem(itemInfo)} actions={[<a onClick={() => onDeleteItem(itemInfo)}>Delete</a>]}>
+            <Card style={{cursor: 'pointer'}} onClick={() => onPressListItem(itemInfo)}>
+                <List.Item {...listItemProps}>
                     <List.Item.Meta
                         avatar={<img width={100} src={imageUrl}/>}
                         title={itemInfo.itemName}
                         description={<div style={centeredRow}>
                             <div>{itemName}</div>
                             <div>{company}</div>
-                            <div>{address} - 0.3 km away</div>
+                            <div>{address}</div>
                         </div>}
                     />
                     <div>

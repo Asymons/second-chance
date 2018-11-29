@@ -43,7 +43,6 @@ function sessionReducer(state = INITIAL_STATE, action) {
             return setToken(state, action);
         }
         case 'SET_CHECKOUT_INFO': {
-            console.log('setting checkout info', action);
             return setCheckoutInfo(state, action);
         }
         case 'SET_SETTINGS': {

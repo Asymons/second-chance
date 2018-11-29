@@ -9,7 +9,6 @@ class PlaceOrderContainer extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log(props);
         this.state = {
             itemQuantity: 1,
         }
@@ -17,13 +16,9 @@ class PlaceOrderContainer extends React.Component {
 
     requestPayment = () => {
         const {itemPrice, storeId, offerId} = this.props.checkoutInfo;
-        console.log(this.props);
         const {itemQuantity} = this.state;
-        console.log(itemPrice, itemQuantity);
         const itemTax = (itemQuantity * itemPrice * 0.13);
         const totalPrice = Math.ceil((itemQuantity * itemPrice + itemTax));
-        console.log(totalPrice);
-        console.log(this.props);
         const {stripe, token, history} = this.props;
         const newOrder = {
             offerId: offerId,
@@ -32,7 +27,6 @@ class PlaceOrderContainer extends React.Component {
             created: new Date()
         };
         stripe.createToken().then(stripeToken => {
-            console.log(stripeToken);
             doPayment(totalPrice, stripeToken.token.id, token, newOrder).then(() => {
                 history.push('/history');
             });
@@ -56,7 +50,6 @@ class PlaceOrderContainer extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         const {itemName, itemPrice, itemFullPrice} = this.props.checkoutInfo;
         const {itemQuantity} = this.state;
         const {stripe} = this.props;

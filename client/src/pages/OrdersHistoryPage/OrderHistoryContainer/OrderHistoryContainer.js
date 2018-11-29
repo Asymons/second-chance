@@ -10,7 +10,8 @@ class OrderHistoryContainer extends React.Component {
         super(props);
 
         this.state = {
-            history: []
+            history: [],
+            loading: true,
         };
     }
 
@@ -27,14 +28,14 @@ class OrderHistoryContainer extends React.Component {
         });
         this.setState({
             history,
+            loading: false,
         })
     }
 
     render(){
-        const {history} = this.state;
-        console.log(history);
+        const {history, loading} = this.state;
         return(
-            history.length === 0 ? <Spin/> :
+            loading ? <Spin/> :
             <OrderHistoryView data={history}/>
         )
     }

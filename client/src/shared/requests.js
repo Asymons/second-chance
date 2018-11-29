@@ -15,7 +15,6 @@ export const getOffers = async (accessToken) => {
     };
     const offersObj = await axios.get(`${serverUrl}/offers`, {headers});
     const {stores} = offersObj.data;
-    console.log(offersObj);
     return stores;
 };
 

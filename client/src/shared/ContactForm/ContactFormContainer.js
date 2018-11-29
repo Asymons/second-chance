@@ -20,7 +20,6 @@ class ContactFormContainer extends React.Component {
             if (err) {
                 return;
             }
-            console.log('Received values of form: ', values);
             if(validator.isEmail(values.email + '')){
                 sendEmailAddress(values.email);
                 form.resetFields();

@@ -52,7 +52,8 @@ class OffersListView extends React.Component {
             handleCancel,
             saveFormRef,
             onDeleteItem,
-            showAddOffer,
+            isOwner,
+            loading,
         } = this.props;
         return (
             <div className="offers-list-view" style={{ margin: 10 }}>
@@ -63,7 +64,7 @@ class OffersListView extends React.Component {
                     handleCancel={handleCancel}
                 />
                 {
-                    showAddOffer ?
+                    isOwner ?
                         <div className="edit-offers">
                             <Button onClick={showModal}>Add Offer</Button>
                         </div> : null
@@ -72,12 +73,13 @@ class OffersListView extends React.Component {
                     Offers in a {settings.radius} km radius.
                 </div>
                 {
-                    data.length === 0 ?
+                    loading ?
                         <Spin/> :
                         <List
                             dataSource={data}
                             renderItem={item =>
                                 <OffersListItem {...item}
+                                                isOwner={isOwner}
                                                 onPressListItem={onPressListItem}
                                                 onDeleteItem={onDeleteItem}/>}
                         />
@@ -92,6 +94,8 @@ const styles = {
         fontSize: 10,
         color: 'rgba(0,0,0,0.3)',
         padding: 10,
+        display: 'flex',
+        alignItems: 'flex-start',
     },
     container: {
         flex: 1,

@@ -17,7 +17,7 @@ module.exports = (app) => {
             stripe.customers.create(
                 { email: 'customer@example.com' },
                 (err, customer) => {
-                    console.log('Err', err);
+                    console.log('err', err);
                     res.send(customer);
                 }
             );

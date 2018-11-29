@@ -3,13 +3,12 @@ import React from 'react';
 class PriceCalculation extends React.Component {
 
     render(){
-        console.log('Price Calc props', this.props);
         const {itemName, itemQuantity, itemPrice, itemFullPrice} = this.props;
         const itemDiscount = (itemQuantity * (itemFullPrice - itemPrice)).toFixed(2);
         const itemTax = (itemQuantity * itemPrice * 0.13);
         const totalPrice = (itemQuantity * itemPrice + itemTax).toFixed(2);
         return(
-            <div style={{width: '100%'}}>
+            <div style={{width: '100%', margin: '10px 0'}}>
                 <div style={styles.container}>
                     <div>
                         {`${itemQuantity}x ${itemName}`}
@@ -34,7 +33,7 @@ class PriceCalculation extends React.Component {
                         {`$${itemTax.toFixed(2)}`}
                     </div>
                 </div>
-                <div style={styles.container}>
+                <div style={{...styles.container, fontWeight: 'bold'}}>
                     <div>
                         Total
                     </div>

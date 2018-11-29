@@ -124,7 +124,6 @@ class Header extends React.Component {
 
         const { navigate, to } = this.state;
         const { token, role, history } = this.props;
-        console.log('role', role);
 
         if (navigate) {
             this.setState({

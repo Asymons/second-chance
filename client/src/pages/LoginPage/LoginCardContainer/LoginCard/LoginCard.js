@@ -26,6 +26,7 @@ const LoginCard = props => (
         >
             <div className="card-content">
                 <GoogleLogin
+                    className="google-login-button"
                     icon={true}
                     clientId={PUBLIC_GOOGLE_AUTH_KEY}
                     buttonText="GOOGLE LOGIN"

@@ -10,7 +10,8 @@ class HistoryContainer extends React.Component {
         super(props);
 
         this.state = {
-            history: []
+            history: [],
+            loading: true
         };
     }
 
@@ -27,13 +28,14 @@ class HistoryContainer extends React.Component {
         });
         this.setState({
             history,
+            loading: false,
         })
     }
 
     render(){
-        const {history} = this.state;
+        const {history, loading} = this.state;
         return (
-            history.length === 0 ? <Spin/> : <HistoryView data={history}/>
+            loading ? <Spin/> : <HistoryView data={history}/>
         )
     }
 }

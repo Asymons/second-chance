@@ -11,23 +11,17 @@ class OffersListContainer extends React.Component{
         super(props);
 
         this.state = {
-          offers: [],
+            offers: [],
             visible: false,
+            loading: true,
         };
     }
 
     async componentDidMount(){
         const {token} = this.props;
-        console.log('a');
         const stores = await getOffers(token);
-        console.log('b');
         const user = await getUser(token);
-        console.log('c');
-        const orders = await getOrders(token);
-        console.log(orders);
-        console.log('d');
         const newOffers = [];
-        console.log(user);
         stores.forEach((store) => {
             if(user.role !== 'OWNER' || user.stores.find((element) => element._id === store._id)){
                 store.offers.forEach((offer) => {
@@ -41,18 +35,15 @@ class OffersListContainer extends React.Component{
                 });
             }
         });
-        console.log(newOffers);
         this.setState({
             offers: newOffers,
+            loading: false,
         })
     }
 
     onPressListItem = (cartInfo) => {
-        console.log('itemInfo', cartInfo);
-        console.log(this.props);
         const {history, onSetCheckoutInfo} = this.props;
         onSetCheckoutInfo(cartInfo);
-        console.log(this.props);
         history.push('/order');
     }
 
@@ -71,7 +62,6 @@ class OffersListContainer extends React.Component{
                 return;
             }
 
-            console.log('Received values of form: ', values);
             addOffer(token, values);
             const newOffers = offers.concat({...values});
             form.resetFields();
@@ -80,7 +70,6 @@ class OffersListContainer extends React.Component{
     }
 
     handleCancel = (e) => {
-        console.log(e);
         this.setState({
             visible: false,
         });
@@ -101,16 +90,16 @@ class OffersListContainer extends React.Component{
 
     render(){
         const {role} = this.props;
-        const {offers, visible} = this.state;
-        const showAddOffer = role === 'OWNER';
+        const {offers, visible, loading} = this.state;
+        const isOwner = role === 'OWNER';
         return(
-
                 <OffersListView
                     visible={visible}
                     data={offers}
+                    loading={loading}
                     onPressListItem={this.onPressListItem}
                     showModal={this.showModal}
-                    showAddOffer={showAddOffer}
+                    isOwner={isOwner}
                     handleOk={this.handleOk}
                     handleCancel={this.handleCancel}
                     saveFormRef={this.saveFormRef}

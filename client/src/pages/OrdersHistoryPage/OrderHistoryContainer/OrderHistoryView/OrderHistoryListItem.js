@@ -15,7 +15,6 @@ class OrderHistoryListItem extends React.Component {
 
     render() {
         const { total, itemPrice, itemDiscount, itemName, company, address, created, orderedBy } = this.props;
-        console.log(this.props);
         const itemInfo = {
             itemFullPrice: itemPrice,
             itemPrice: itemPrice - itemDiscount,
