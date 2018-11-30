@@ -79,7 +79,8 @@ class OffersListContainer extends React.Component{
         this.formRef = formRef;
     }
 
-    onDeleteItem = (itemInfo) => {
+    onDeleteItem = (e, itemInfo) => {
+        e.stopPropagation();
         const {offers} = this.state;
         const {token} = this.props;
         deleteOffer(token, itemInfo);

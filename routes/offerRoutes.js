@@ -67,7 +67,7 @@ module.exports = (app) => {
         if (user.stores.length === 0) {
             res.status(400).send({ message: 'User has no stores' });
         } else {
-            const storeId = user.stores[0];
+            const {storeId} = user.stores[0];
             await dbHelper.deleteOffer(storeId, offer.offerId);
             res.send({ message: 'Offer deleted', offer });
         }

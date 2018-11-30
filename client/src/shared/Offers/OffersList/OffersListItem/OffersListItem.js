@@ -36,7 +36,7 @@ class OffersListItem extends React.Component {
         };
 
         const listItemProps = isOwner ? {
-            actions: [<a style={{zIndex: 2}} onClick={() => onDeleteItem(itemInfo)}>Delete</a>],
+            actions: [<a style={{zIndex: 2}} onClick={(e) => onDeleteItem(e, itemInfo)}>Delete</a>],
         } : {};
 
         return (
