@@ -9,8 +9,8 @@ module.exports = (app) => {
         const orders = [];
 
         const storeDataPromises = user.stores.map(async (storeObj) => {
-           const {_id} = storeObj;
-           const store = await dbHelper.getStore(_id);
+           const {storeId} = storeObj;
+           const store = await dbHelper.getStore(storeId);
 
            store.orders.forEach((order) => {
                const offer = store.offers.find((offer) => {
