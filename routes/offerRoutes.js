@@ -60,7 +60,7 @@ module.exports = (app) => {
         }
     );
 
-    app.delete('/api/offer', authHelper.isUserAuthorized, offerValidator, async (req, res) => {
+    app.delete('/api/offer', authHelper.isUserAuthorized, async (req, res) => {
         const userId = req.decoded;
         const { offer } = req.body;
         const user = await dbHelper.getUser(userId);
