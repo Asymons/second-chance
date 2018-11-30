@@ -9,10 +9,8 @@ const MAX_KM = 100;
 
 const offerValidator = (req, res, next) => {
     const {offer} = req.body;
-    const {offerId, itemName, itemPrice, itemDiscount} = offer;
-    if (!(validator.isAscii(offerId + '') &&
-        validator.isAscii(itemName + '') &&
-        validator.isInt(itemPrice + '') &&
+    const { itemPrice, itemDiscount} = offer;
+    if (!(validator.isInt(itemPrice + '') &&
         validator.isInt(itemDiscount + ''))) {
         return res.status(400).send({ message: 'Invalid input' });
     } else {
@@ -62,7 +60,7 @@ module.exports = (app) => {
         }
     );
 
-    app.delete('/api/offer', offerValidator, authHelper.isUserAuthorized, async (req, res) => {
+    app.delete('/api/offer', authHelper.isUserAuthorized, offerValidator, async (req, res) => {
         const userId = req.decoded;
         const { offer } = req.body;
         const user = await dbHelper.getUser(userId);
