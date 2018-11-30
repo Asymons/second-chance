@@ -43,6 +43,9 @@ const LandingPage = (props) => (
         </div>
         <ContactFormContainer/>
         <div className="footer">
+            Have questions? Send me an email at alessiosymons@gmail.com
+            <br/>
+            <br/>
             Copyright © 2018 Alessio Symons
         </div>
     </div>
