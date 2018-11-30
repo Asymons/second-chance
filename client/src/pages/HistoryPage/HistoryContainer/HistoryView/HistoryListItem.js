@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, List } from 'antd';
 import './HistoryListItem.scss';
+import moment from 'moment';
 
 const centeredRow = {
     width: '100%',
@@ -38,7 +39,7 @@ class HistoryListItem extends React.Component {
                             <div>{itemName}</div>
                             <div>{company}</div>
                             <div>{address}</div>
-                            <div>Ordered at: {created}</div>
+                            <div>Ordered: {moment(created).fromNow()}</div>
                             <div>Pick up 10 minutes before closing.</div>
                         </div>}
                     />

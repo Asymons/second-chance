@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, List } from 'antd';
-import mrMeatImage from '../../../../assets/images/mrmeat-logo.jpg';
 import './OrderHistoryListItem.scss';
+import moment from 'moment';
 
 const centeredRow = {
     width: '100%',
@@ -41,7 +41,7 @@ class OrderHistoryListItem extends React.Component {
                             <div>{company}</div>
                             <div>{address}</div>
                             <div>Ordered by: {orderedBy}</div>
-                            <div>Ordered at: {created}</div>
+                            <div>Ordered: {moment(created).fromNow()}</div>
                         </div>}
                     />
                     <div>
