@@ -23,7 +23,7 @@ class OffersListContainer extends React.Component{
         const user = await getUser(token);
         const newOffers = [];
         stores.forEach((store) => {
-            if(user.role !== 'OWNER' || user.stores.find((element) => element._id === store._id)){
+            if(user.role !== 'OWNER' || user.stores.find((element) => element.storeId === store._id)){
                 store.offers.forEach((offer) => {
                     newOffers.push({
                         ...store,
