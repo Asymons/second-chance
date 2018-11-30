@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, List } from 'antd';
-import mrMeatImage from '../../../../assets/images/mrmeat-logo.jpg';
 import './HistoryListItem.scss';
 
 const centeredRow = {
@@ -14,7 +13,16 @@ const centeredRow = {
 class HistoryListItem extends React.Component {
 
     render() {
-        const { total, itemPrice, itemDiscount, itemName, company, address, created } = this.props;
+        const {
+            total,
+            itemPrice,
+            itemDiscount,
+            itemName,
+            company,
+            address,
+            created,
+            imageUrl,
+        } = this.props;
         const itemInfo = {
             itemFullPrice: itemPrice,
             itemPrice: itemPrice - itemDiscount,
@@ -24,12 +32,12 @@ class HistoryListItem extends React.Component {
             <Card>
                 <List.Item>
                     <List.Item.Meta
-                        avatar={<img width={100} src={mrMeatImage}/>}
+                        avatar={<img width={100} src={imageUrl}/>}
                         title={itemInfo.itemName}
                         description={<div style={centeredRow}>
                             <div>{itemName}</div>
                             <div>{company}</div>
-                            <div>{address} - 0.3 km away</div>
+                            <div>{address}</div>
                             <div>Ordered at: {created}</div>
                             <div>Pick up 10 minutes before closing.</div>
                         </div>}

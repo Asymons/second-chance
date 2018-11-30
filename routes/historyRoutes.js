@@ -27,7 +27,8 @@ module.exports = (app) => {
                 itemDiscount: offer.itemDiscount,
                 quantity: historyObj.quantity,
                 total: total,
-                created: historyObj.created
+                created: historyObj.created,
+                imageUrl: store.imageUrl,
             };
         }));
 
