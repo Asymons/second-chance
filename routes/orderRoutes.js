@@ -14,7 +14,7 @@ module.exports = (app) => {
 
            store.orders.forEach((order) => {
                const offer = store.offers.find((offer) => {
-                   return order.offerId == offer._id;
+                   return order.offerId == offer.offerId;
                });
 
                const tax = 1.13;
@@ -34,6 +34,7 @@ module.exports = (app) => {
                        created: order.created,
                        quantity: order.quantity,
                        orderedBy: order.orderedBy,
+                       imageUrl: store.imageUrl,
                    })
                }
            });
