@@ -31,7 +31,7 @@ module.exports = (app) => {
                 const image = {};
                 image.url = req.file.url;
                 image.id = req.file.public_id;
-                await dbHelper.setStoreImage(user.stores[0]._id, image.url, image.id);
+                await dbHelper.setStoreImage(user.stores[0].storeId, image.url, image.id);
                 res.send({message: 'Image saved'});
             }else{
                 res.send({message: 'No permission'});
