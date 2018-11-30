@@ -148,7 +148,9 @@ const saveStore = async (storeInfo) => {
 
 const setStoreImage = async (storeId, imageUrl, publicId) => {
     const store = await getStore(storeId);
-    cloudinary.v2.uploader.destroy(store.publicId);
+    if(store.publicId !== ''){
+        cloudinary.v2.uploader.destroy(store.publicId);
+    }
     store.imageUrl = imageUrl;
     store.publicId = publicId;
     store.save();
