@@ -13,7 +13,7 @@ module.exports = (app) => {
             const newHistoryObj = JSON.parse(JSON.stringify(historyObj));
             const offer = store.offers.find((offer) => {
                 const newOffer = JSON.parse(JSON.stringify(offer));
-                return newOffer._id == newHistoryObj.offerId;
+                return newOffer.offerId == newHistoryObj.offerId;
             });
             const total = calcHelper.computeTotal(offer.itemPrice, offer.itemDiscount, historyObj.quantity);
             return {
