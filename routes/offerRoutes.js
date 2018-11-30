@@ -10,8 +10,8 @@ const MAX_KM = 100;
 const offerValidator = (req, res, next) => {
     const {offer} = req.body;
     const {offerId, itemName, itemPrice, itemDiscount} = offer;
-    if (!(validator.isString(offerId + '') &&
-        validator.isString(itemName + '') &&
+    if (!(validator.isAscii(offerId + '') &&
+        validator.isAscii(itemName + '') &&
         validator.isInt(itemPrice + '') &&
         validator.isInt(itemDiscount + ''))) {
         return res.status(400).send({ message: 'Invalid input' });

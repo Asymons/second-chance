@@ -30,7 +30,7 @@ const OfferAddModal = Form.create()(
                         </FormItem>
                         <FormItem>
                             {getFieldDecorator('itemDiscount')(<Input
-                                placeholder="New discounted price in cents e.g. 250"
+                                placeholder="Price to discount by in cents e.g. 250"
                             />)}
                         </FormItem>
                     </Form>
