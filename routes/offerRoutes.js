@@ -3,17 +3,17 @@ const dbHelper = require('../helpers/dbHelper');
 const calcHelper = require('../helpers/calcHelper');
 const uuid = require('uuid/v4');
 const { check } = require('express-validator/check');
+const validator = require('validator');
 
 const MAX_KM = 100;
 
 const offerValidator = (req, res, next) => {
     const {offer} = req.body;
     const {offerId, itemName, itemPrice, itemDiscount} = offer;
-    const { settings } = req.body;
     if (!(validator.isString(offerId + '') &&
         validator.isString(itemName + '') &&
-        validator.isNumeric(itemPrice + '') &&
-        validator.isNumeric(itemDiscount + ''))) {
+        validator.isInt(itemPrice + '') &&
+        validator.isInt(itemDiscount + ''))) {
         return res.status(400).send({ message: 'Invalid input' });
     } else {
         next();
@@ -55,7 +55,7 @@ module.exports = (app) => {
                 res.status(400).send({ message: 'User has no stores' });
             } else {
                 // TODO: Allow user to have multiple stores later.
-                const storeId = user.stores[0];
+                const {storeId} = user.stores[0];
                 await dbHelper.addOffer(storeId, { ...offer, offerId: uuid() });
                 res.send({ message: 'Offer added', offer });
             }
