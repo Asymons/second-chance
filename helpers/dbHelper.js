@@ -133,7 +133,7 @@ const addToStore = async (googleId, newOrder, orderedBy) => {
 
 const getOffer = async (storeId, offerId) => {
     const store = await getStore(storeId);
-    const order = store.offers.find((element) => offerId === element._id);
+    const order = store.offers.find((element) => offerId === element.offerId);
     return order;
 };
 
